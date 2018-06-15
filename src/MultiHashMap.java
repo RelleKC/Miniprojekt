@@ -11,7 +11,7 @@ import java.util.*;
  */
 public class MultiHashMap<K, V> implements MultiMap<K, V> {
 
-    HashMap<K, List<V>> hashmap = new HashMap<>();
+    private HashMap<K, List<V>> hashmap = new HashMap<>();
 
     @Override
     public Set<K> getKeys() {
@@ -27,7 +27,7 @@ public class MultiHashMap<K, V> implements MultiMap<K, V> {
     }
 
     @Override
-    public List removeKey(K key) throws KeyNotFoundException, NullPointerException {
+    public List<V> removeKey(K key) throws KeyNotFoundException, NullPointerException {
         if (key == null) {
             throw new NullPointerException("Key must not be null.");
         }
@@ -41,11 +41,11 @@ public class MultiHashMap<K, V> implements MultiMap<K, V> {
 
     @Override
     public List<V> getValues(K key) throws KeyNotFoundException, NullPointerException {
+        if (key == null) {
+            throw new NullPointerException("Key must not be null.");
+        }
         if (!hashmap.containsKey(key)) {
             throw new KeyNotFoundException("Key not found.");
-        }
-        if (hashmap.get(key) == null) {
-            throw new NullPointerException("Key must not be null.");
         }
         return hashmap.get(key);
     }
@@ -76,19 +76,20 @@ public class MultiHashMap<K, V> implements MultiMap<K, V> {
 
     @Override
     public void addValue(K key, V value) throws NullPointerException {
-        if (key == null || value == null) {
-            throw new NullPointerException();
+        if (key == null) {
+            throw new NullPointerException("Key must not be null.");
         }
-        List<V> list = new ArrayList<>();
+        if (value == null) {
+            throw new NullPointerException("Value must not be null.");
+        }
         if (!hashmap.containsKey(key)) {
+            List<V> list = new ArrayList<>();
             list.add(value);
             hashmap.put(key, list);
         } else {
             hashmap.get(key).add(value);
         }
     }
-
-
 
     @Override
     public String toString() {
