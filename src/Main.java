@@ -15,6 +15,8 @@ public class Main {
         multiMap.addValue("C","D");
         System.out.println(multiMap.toString());
         System.out.println("-------------------------------------------------------");
+        System.out.println("-------------------- removed Key B --------------------");
+        System.out.println("-------------------------------------------------------");
 
         try {
             multiMap.removeKey("B");
@@ -23,6 +25,10 @@ public class Main {
         }
 
         System.out.println(multiMap.toString());
+        System.out.println("-------------------------------------------------------");
+        System.out.println("-------------- removed Value B for Key A --------------");
+        System.out.println("-------------- removed Value C for Key A --------------");
+        System.out.println("-------------- removed Value D for Key A --------------");
         System.out.println("-------------------------------------------------------");
 
         try {
@@ -34,6 +40,8 @@ public class Main {
         }
 
         System.out.println(multiMap.toString());
+        System.out.println("-------------------------------------------------------");
+        System.out.println("------ result of write and read of previous map -------");
         System.out.println("-------------------------------------------------------");
 
         StringMapIO stringMapIO = new StringMapIO();
@@ -54,6 +62,9 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
+        System.out.println(copy.toString());
 
     }
 }
