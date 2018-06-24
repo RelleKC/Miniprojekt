@@ -63,6 +63,7 @@ public class StringMapIO implements MultiMapIO<String, String>{
                 throw new IOException("line <" + line + "> does not contain separator");
             }
         }
+        reader.close();
         return multiMap;
     }
 	
